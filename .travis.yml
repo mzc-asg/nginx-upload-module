@@ -56,7 +56,7 @@ before_install:
       (cd dl && tar -zxf curl-${CURL}.tar.gz)
     fi
     (cd dl/curl-${CURL} &&
-      [ -f Makefile ] || ./configure --with-nghttp2 --with-openssl --prefix=/usr/local &&
+      [ -f Makefile ] || ./configure --with-nghttp2 --without-ssl --prefix=/usr/local &&
       make && sudo make install)
   - sudo ldconfig
   - sudo cp dl/cpanm /usr/local/bin/cpanm
