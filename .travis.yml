@@ -29,21 +29,21 @@ before_install:
   - mkdir -p dl
   - |
     if [ ! -f dl/nghttp2-${NGHTTP2}.tar.gz ]; then
-      (cd dl && curl -O -L https://github.com/nghttp2/nghttp2/releases/download/v${NGHTTP2}/nghttp2-${NGHTTP2}.tar.gz)
+      (cd dl && curl -k -O -L https://github.com/nghttp2/nghttp2/releases/download/v${NGHTTP2}/nghttp2-${NGHTTP2}.tar.gz)
     fi
   - |
     if [ ! -f dl/curl-${CURL}.tar.gz ]; then
-      (cd dl && curl -O -L https://curl.se/download/curl-${CURL}.tar.gz)
+      (cd dl && curl -k -O -L https://curl.se/download/curl-${CURL}.tar.gz)
     fi
   - |
     if [ ! -f dl/nginx-${NGINX_VERSION}.tar.gz ]; then
-      curl -o dl/nginx-${NGINX_VERSION}.tar.gz -L http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz;
+      curl -o dl/nginx-${NGINX_VERSION}.tar.gz -k -L http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz;
     fi
   - |
     if [ ! -f dl/test-nginx-${TESTNGINX_VER}.tar.gz ]; then
-      curl -o dl/test-nginx-${TESTNGINX_VER}.tar.gz -L "https://github.com/openresty/test-nginx/archive/${TESTNGINX_VER}.tar.gz";
+      curl -o dl/test-nginx-${TESTNGINX_VER}.tar.gz -k -L "https://github.com/openresty/test-nginx/archive/${TESTNGINX_VER}.tar.gz";
     fi
-  - if [ ! -f dl/cpanm ]; then curl -o dl/cpanm https://cpanmin.us/; chmod +x dl/cpanm; fi
+  - if [ ! -f dl/cpanm ]; then curl -o dl/cpanm -k https://cpanmin.us/; chmod +x dl/cpanm; fi
   - |
     if [ ! -e dl/nghttp2-${NGHTTP2} ]; then
       (cd dl && tar -zxf nghttp2-${NGHTTP2}.tar.gz)
@@ -81,4 +81,4 @@ script:
   - prove --directives --verbose -r t
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -G '*ngx_http_upload_module*' -a '--object-directory nginx/objs/addon/nginx-upload-module *.c -s '"$TRAVIS_BUILD_DIR"
+  - bash <(curl -s -k https://codecov.io/bash) -G '*ngx_http_upload_module*' -a '--object-directory nginx/objs/addon/nginx-upload-module *.c -s '"$TRAVIS_BUILD_DIR"
