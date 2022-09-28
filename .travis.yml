@@ -33,7 +33,7 @@ before_install:
     fi
   - |
     if [ ! -f dl/curl-${CURL}.tar.gz ]; then
-      (cd dl && curl -O -L https://curl.haxx.se/download/curl-${CURL}.tar.gz)
+      (cd dl && curl -O -L https://curl.se/download/curl-${CURL}.tar.gz)
     fi
   - |
     if [ ! -f dl/nginx-${NGINX_VERSION}.tar.gz ]; then
