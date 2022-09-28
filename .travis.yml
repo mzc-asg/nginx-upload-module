@@ -73,7 +73,7 @@ before_install:
 
 install:
   - cd nginx
-  - ./configure --with-http_v2_module --with-http_ssl_module --add-module=$TRAVIS_BUILD_DIR --with-cc-opt='-O0 -coverage' --with-ld-opt='-fprofile-arcs'
+  - ./configure --with-http_v2_module --without-ssl --add-module=$TRAVIS_BUILD_DIR --with-cc-opt='-O0 -coverage' --with-ld-opt='-fprofile-arcs'
   - make
   - cd ..
 
